@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: backend-user
+    run: backend-user
   sessionAffinity: None
   type: ClusterIP
 status:
