@@ -1,27 +1,30 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: backend-user
   name: backend-user
+  labels:
+    app: backend-user  
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
   template:
     metadata:
       labels:
-        service: backend-user
+        app: backend-user       
     spec:
       containers:
-      - image: bom234/udagram-api-user
-        name: backend-user 
-        imagePullPolicy: Always  
+      - name: backend-user
+        image: bom234/udagram-api-user
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"   
-          ports:  
-          - containerPort: 8080  
+            cpu: "500m"                
       restartPolicy: Always

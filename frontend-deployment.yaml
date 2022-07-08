@@ -1,20 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: frontend
   name: frontend
+  labels:
+    app: frontend  
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
   template:
     metadata:
       labels:
-        service: frontend
-        api: external        
+        app: frontend       
     spec:
       containers:
-      - image: bom234/udagram-frontend:local
-        name: frontend
+      - name: frontend
+        image: bom234/udagram-frontend:local
         imagePullPolicy: Always          
         ports:
         - containerPort: 80
@@ -24,7 +26,5 @@ spec:
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m" 
-        ports:
-        - containerPort: 8080               
+            cpu: "500m"                
       restartPolicy: Always

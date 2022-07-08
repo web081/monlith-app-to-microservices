@@ -1,26 +1,30 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: backend-feed
   name: backend-feed
+  labels:
+    app: backend-feed  
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: backend-feed
   template:
     metadata:
       labels:
-        service: backend-feed
+        app: backend-feed       
     spec:
       containers:
-      - image: bom234/udagram-api-feed
-        name: backend-feed
-        imagePullPolicy: Always  
+      - name: backend-feed
+        image: bom234/udagram-api-feed
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
-            cpu: "500m"                     
+            cpu: "500m"                
       restartPolicy: Always
-        
