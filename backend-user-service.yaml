@@ -8,9 +8,9 @@ metadata:
   selfLink: /api/v1/namespaces/default/services/backend-user
 spec:
   ports:
-  - port: 8080
+  - port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
   selector:
     run: backend-user
   sessionAffinity: None

@@ -22,9 +22,9 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            memory: "1024Mi"
-            cpu: "250m"
+            cpu: "150m"
+            memory: "250Mi"          
           limits:
-            memory: "1024Mi"
-            cpu: "500m"                
+            cpu: "500m"  
+            memory: "1024Mi"                        
       restartPolicy: Always
